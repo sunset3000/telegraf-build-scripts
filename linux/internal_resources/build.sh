@@ -16,11 +16,16 @@ if [ -d /src ]; then
     make
 fi
 
+if [[ -f /output/Linux-x86_64.zip ]]; then
+    rm /output/Linux-x86_64.zip
+fi
+
 # Copy out build artifacts if they exist
 if [[ -d /output && -f $GOPATH/bin/telegraf ]]; then
+    mkdir -p /output
     cp $GOPATH/bin/telegraf /output/telegraf
     cd /output
-    zip Linux-x86_64 telegraf
+    zip Linux-x86_64.zip *
 fi
 
 echo "DONE"
