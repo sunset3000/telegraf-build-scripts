@@ -8,9 +8,9 @@ RUN yum install -y zip
 
 # Install GO
 WORKDIR /tmp
-RUN curl -LO https://storage.googleapis.com/golang/go1.7.5.linux-amd64.tar.gz
-RUN sha256sum go1.7*.tar.gz
-RUN tar -C /usr/local -xvzf go1.7.5.linux-amd64.tar.gz
+RUN curl -LO https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
+RUN sha256sum go1.9*.tar.gz
+RUN tar -C /usr/local -xvzf go1.9.linux-amd64.tar.gz
 RUN /bin/bash -c 'echo PATH=$PATH:/usr/local/go/bin > /etc/profile.d/path.sh'
 
 # Copy in build script

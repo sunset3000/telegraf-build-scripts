@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 mkdir -p $GOPATH/src/github.com/influxdata
 
@@ -13,6 +14,10 @@ if [ -d /src ]; then
     cd $GOPATH/src/github.com/influxdata/telegraf
 
     # make telegraf
+    make clean
+    make deps
+    make lint
+    make test
     make
 fi
 
@@ -21,9 +26,9 @@ if [[ -f /output/Linux-x86_64.zip ]]; then
 fi
 
 # Copy out build artifacts if they exist
-if [[ -d /output && -f $GOPATH/bin/telegraf ]]; then
+if [[ -d /output && -f $GOPATH/src/github.com/influxdata/telegraf/telegraf ]]; then
     mkdir -p /output
-    cp $GOPATH/bin/telegraf /output/telegraf
+    cp $GOPATH/src/github.com/influxdata/telegraf/telegraf /output/telegraf
     cd /output
     zip Linux-x86_64.zip *
 fi
